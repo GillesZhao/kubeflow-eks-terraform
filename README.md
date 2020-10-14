@@ -1,9 +1,9 @@
 # kubeflow-eks-terraform
 
-Deploy kubeflow on AWS EKS with terraform
+   Deploy kubeflow on AWS EKS with terraform
 
 ## Install Terraform opensource binary:
-Get the terraform zip package from website : https://www.terraform.io/downloads.html
+   Get the terraform zip package from website : https://www.terraform.io/downloads.html
 
 ### For Linux platform:
 ```
@@ -13,7 +13,7 @@ Get the terraform zip package from website : https://www.terraform.io/downloads.
 ```
 
 ## Run terraform and start build resources on AWS:
-Quick step:
+   Quick step:
 ```
     
     terraform init
@@ -21,7 +21,7 @@ Quick step:
 ```
 
 ### Some information about the terraform stack:  
-The stack will create:
+   The stack will create:
 ```
      VPC
      Public and private subnet
@@ -31,3 +31,5 @@ The stack will create:
      EKS node groups with EC2 worker nodes
      Autoscaling groups for EC2 worker nodes
 ```
+
+## Once the EKS cluster is ready, terraform will trigger local scripts to fetch kubeflow codes and deploy it into EKS:
