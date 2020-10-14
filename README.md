@@ -13,7 +13,7 @@
 ```
 
 ## Run terraform and start build resources on AWS:
-   Quick step:
+   Quick start:
 ```
     
     terraform init
@@ -32,4 +32,23 @@
      Autoscaling groups for EC2 worker nodes
 ```
 
-## Once the EKS cluster is ready, terraform will trigger local scripts to fetch kubeflow codes and deploy it into EKS:
+## After EKS cluster created by terraform: 
+   Once the EKS cluster is ready, terraform will trigger local scripts to fetch kubeflow codes and deploy it into EKS:
+```
+    resource "null_resource" "deploy_kubeflow" {
+
+      depends_on = [
+        module.eks
+      ]
+
+      provisioner "local-exec" {
+        command = "aws --region ${var.region} eks update-kubeconfig --name ${local.cluster_name}"
+      }
+
+      provisioner "local-exec" {
+        command = "sh deploy_kubeflow.sh"
+      }
+
+    }
+```
+
