@@ -7,14 +7,15 @@ Get the terraform zip package from website : https://www.terraform.io/downloads.
 
 ### For Linux platform:
 ```
-wget https://releases.hashicorp.com/terraform/0.13.4/terraform_0.13.4_linux_amd64.zip
-unzip terraform_0.13.4_linux_amd64.zip
-mv ./terraform /usr/local/bin/
+     wget https://releases.hashicorp.com/terraform/0.13.4/terraform_0.13.4_linux_amd64.zip
+     unzip terraform_0.13.4_linux_amd64.zip
+     mv ./terraform /usr/local/bin/
 ```
 
 ## Run terraform and start build resources on AWS:
 Quick step:
 ```
+    
     terraform init
     terraform apply
 ```
