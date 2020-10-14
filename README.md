@@ -32,7 +32,7 @@
      Autoscaling groups for EC2 worker nodes
 ```
 
-## After EKS cluster created by terraform: 
+## After EKS cluster created by terraform, kubeflow building will be launched: 
    Once the EKS cluster is ready, terraform will trigger local scripts to fetch kubeflow codes and deploy it into EKS:
 ```
     resource "null_resource" "deploy_kubeflow" {
@@ -51,4 +51,15 @@
 
     }
 ```
+### Information in the script deploy_kubeflow.sh:
+   Prepare the environment:
+```
+    Install kubectl
+    Install kfctl
+    Get and apply kubeflow deployment codes
+    Create Network Load Balancer(NLB) on AWS
+    Create ingress in istio namespace
+```
 
+## Some points to pay attention:
+   SSL certificate and Route 53 records pointing to NLB need to be handled manually.
