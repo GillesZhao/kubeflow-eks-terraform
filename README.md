@@ -112,12 +112,12 @@
     }
 ```
 
-     b. Edit kubernetes configmap after cluster created:
+    b. Edit kubernetes configmap after cluster created:
 
 ```
       kubectl edit -n kube-system configmap/aws-auth
 ```  
-     Don't forget to install aws-iam-authenticator and add the exec command into $HOME/.kube/config:
+    Don't forget to install aws-iam-authenticator and add the exec command into $HOME/.kube/config:
 ```     
      curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/linux/amd64/aws-iam-authenticator
      
@@ -133,4 +133,5 @@
            - -i
            - xxxxxx
            command: aws-iam-authenticator
+     [...]
 ```
