@@ -114,9 +114,8 @@
 
     b. Edit kubernetes configmap after cluster created:
 
-```
       kubectl edit -n kube-system configmap/aws-auth
-```  
+ 
 
     Don't forget to install aws-iam-authenticator and add the exec command into $HOME/.kube/config:
     
