@@ -15,7 +15,6 @@
 ## Run terraform and start build resources on AWS:
    Quick start:
 ```
-    
     terraform init
     terraform apply
 ```
@@ -75,4 +74,36 @@
              serviceName: istio-ingressgateway
              servicePort: 80
 [...]
+```
+### We may have an issue with IAM users that didn't initially create the EKS cluster, they always got error: You must be logged in to the server (Unauthorized) error when using kubectl (even though aws-iam-authenticator gave them some token).
+To get rid of this issue, we have 2 ways:
+#### Add value to variables "map_users" when apply this terraform stack: 
+Here's an example:
+```
+    variable "manage_aws_auth" {
+      description = "Whether to apply the aws-auth configmap file."
+      default     = true
+    }  
+     
+    variable "map_users" {
+      description = "Additional IAM users to add to the aws-auth configmap. See examples/basic/variables.tf for example format."
+      type = list(object({
+        userarn  = string
+        username = string
+        groups   = list(string)
+      }))
+      
+      default = [
+        {
+          userarn  = "arn:aws:iam::66666666666:user/user1"         <---- Put the iam user arm here
+          username = "user1"
+          groups   = ["system:masters"]
+        },
+        {
+          userarn  = "arn:aws:iam::66666666666:user/user2"         <---- Put the iam user arm here
+          username = "user2"
+          groups   = ["system:masters"]
+        },
+      ]
+    }
 ```
