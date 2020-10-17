@@ -68,7 +68,7 @@
 [...]
    spec:
      rules:
-     - host: kubeflow.terraform.bciadopt.com         <---- Here's an example.
+     - host: kubeflow.terraform.xxxxx.com         <---- Here's an example.
        http:
          paths:
          - backend:
@@ -112,8 +112,25 @@
     }
 ```
 
-   b. Edit kubernetes configmap after cluster created:
+     b. Edit kubernetes configmap after cluster created:
 
 ```
-    kubectl edit -n kube-system configmap/aws-auth
-```    
+      kubectl edit -n kube-system configmap/aws-auth
+```  
+     Don't forget to install aws-iam-authenticator and add the exec command into $HOME/.kube/config:
+```     
+     curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/linux/amd64/aws-iam-authenticator
+     
+     e.g.
+     #vi /root/.kube/config
+     [...]
+     - name: arn:aws:eks:us-east-1:xxxxxxxx:cluster/xxxxx
+       user:
+         exec:
+           apiVersion: client.authentication.k8s.io/v1alpha1
+           args:
+           - token
+           - -i
+           - xxxxxx
+           command: aws-iam-authenticator
+```
