@@ -78,15 +78,13 @@
 ```
 3. We may have an issue with IAM users that didn't initially create the EKS cluster, they always got error: You must be logged in to the server (Unauthorized) error when using kubectl (even though aws-iam-authenticator gave them some token).
 
-   To get rid of this issue, we have 2 ways:
+   To get rid of this issue, we have some steps here:
    
-   a. Edit kubernetes configmap after cluster created:
-
-      kubectl edit -n kube-system configmap/aws-auth
-
-   b. Add value to variables "map_users" when apply this terraform stack and install aws-iam-authenticator: 
-
-     curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/linux/amd64/aws-iam-authenticator
+    Install aws-iam-authenticator: 
+   
+    #curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/linux/amd64/aws-iam-authenticator
+    
+    Add the blocks as below into $HOME/.kube/config      
 ```     
      e.g.
      #vi /root/.kube/config
@@ -103,7 +101,14 @@
      [...]
      
 ```
-    
+   
+   
+   a. Edit kubernetes configmap after cluster created:
+
+      kubectl edit -n kube-system configmap/aws-auth
+
+   b. Add value to variables "map_users" when apply this terraform stack:
+
     Here's an example:
 ```
     variable "manage_aws_auth" {
