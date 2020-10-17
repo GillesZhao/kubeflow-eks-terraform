@@ -61,8 +61,9 @@
 ```
 
 ## Some points to pay attention:
-### SSL certificate and Route 53 records pointing to NLB need to be handled manually.
-### Host name is defined in kubeflow-ingress.yaml:
+1. SSL certificate and Route 53 records pointing to NLB need to be handled manually.
+
+2. Host name is defined in kubeflow-ingress.yaml:
 ```
 [...]
    spec:
@@ -75,12 +76,13 @@
              servicePort: 80
 [...]
 ```
-### We may have an issue with IAM users that didn't initially create the EKS cluster, they always got error: You must be logged in to the server (Unauthorized) error when using kubectl (even though aws-iam-authenticator gave them some token).
+3. We may have an issue with IAM users that didn't initially create the EKS cluster, they always got error: You must be logged in to the server (Unauthorized) error when using kubectl (even though aws-iam-authenticator gave them some token).
+
 To get rid of this issue, we have 2 ways:
 
-1. Add value to variables "map_users" when apply this terraform stack: 
+1) Add value to variables "map_users" when apply this terraform stack: 
 
-Here's an example:
+    Here's an example:
 ```
     variable "manage_aws_auth" {
       description = "Whether to apply the aws-auth configmap file."
@@ -110,7 +112,7 @@ Here's an example:
     }
 ```
 
-2. Edit kubernetes configmap after cluster created:
+2) Edit kubernetes configmap after cluster created:
 
 ```
     kubectl edit -n kube-system configmap/aws-auth
