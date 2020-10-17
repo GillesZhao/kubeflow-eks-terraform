@@ -102,6 +102,7 @@
      
 ```
    
+   Choose either of following methods to add IAM USER ARN into cluster ConfigMap aws-auth:
    
    a. Edit kubernetes configmap after cluster created:
 
