@@ -62,16 +62,17 @@
 ```
 
 ## Some points to pay attention:
-   SSL certificate and Route 53 records pointing to NLB need to be handled manually.
-   Host name is defined in kubeflow-ingress.yaml:
+### SSL certificate and Route 53 records pointing to NLB need to be handled manually.
+### Host name is defined in kubeflow-ingress.yaml:
 ```
+[...]
    spec:
      rules:
      - host: kubeflow.terraform.bciadopt.com         <---- Here's an example.
        http:
-       paths:
-       - backend:
-         serviceName: istio-ingressgateway
-         servicePort: 80
-
+         paths:
+         - backend:
+             serviceName: istio-ingressgateway
+             servicePort: 80
+[...]
 ```
