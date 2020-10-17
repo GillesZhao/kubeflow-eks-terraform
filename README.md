@@ -50,7 +50,7 @@
 
     }
 ```
-### Information in the script deploy_kubeflow.sh:
+### What is in the script deploy_kubeflow.sh:
    Prepare the environment:
 ```
     Install kubectl
@@ -82,7 +82,7 @@
    
    a. Edit kubernetes configmap after cluster created:
 
-   kubectl edit -n kube-system configmap/aws-auth
+      kubectl edit -n kube-system configmap/aws-auth
 
    b. Add value to variables "map_users" when apply this terraform stack: 
 
@@ -114,7 +114,9 @@
         },
       ]
     }
+    
 ```
+
     Don't forget to install aws-iam-authenticator and add the exec command into $HOME/.kube/config:
       
 ```     
@@ -133,4 +135,5 @@
            - xxxxxx
            command: aws-iam-authenticator
      [...]
+     
 ```
