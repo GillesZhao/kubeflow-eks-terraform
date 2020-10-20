@@ -17,6 +17,8 @@
 ```
     terraform init
     terraform apply
+    
+    The values like VPC name, EKS Cluster name etc. will be automatically applied by file values.auto.tfvars.
 ```
 
 ### Some information about the terraform stack:  
