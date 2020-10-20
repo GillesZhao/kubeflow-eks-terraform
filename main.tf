@@ -44,7 +44,7 @@ data "aws_availability_zones" "available" {
 
 locals {
   #cluster_name = "test-eks-${random_string.suffix.result}"
-  cluster_name = "kubeflow-eks-terraform"
+  cluster_name = var.cluster_name
 }
 
 resource "random_string" "suffix" {
@@ -56,11 +56,11 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "2.47.0"
 
-  name                 = "kubeflow-terraform-vpc"
-  cidr                 = "172.16.0.0/16"
+  name                 = var.vpc_name
+  cidr                 = var.vpc_cidr
   azs                  = data.aws_availability_zones.available.names
-  private_subnets      = ["172.16.1.0/24", "172.16.2.0/24", "172.16.3.0/24"]
-  public_subnets       = ["172.16.4.0/24", "172.16.5.0/24", "172.16.6.0/24"]
+  private_subnets      = var.private_subnets
+  public_subnets       = var.public_subnets
   enable_nat_gateway   = true
   #single_nat_gateway   = true
   #one_nat_gateway_per_az = true
@@ -84,7 +84,7 @@ module "eks" {
   subnets         = module.vpc.private_subnets
 
   tags = {
-    Environment = "test"
+    Environment = var.cluster_env
     GithubRepo  = "terraform-aws-eks"
     GithubOrg   = "terraform-aws-modules"
   }
@@ -98,11 +98,12 @@ module "eks" {
 
   node_groups = {
     example = {
-      desired_capacity = 4
-      max_capacity     = 10
-      min_capacity     = 2
+      desired_capacity = var.node_desired_capacity
+      max_capacity     = var.node_max_capacity
+      min_capacity     = var.node_min_capacity
 
-      instance_type = "m5.large"
+      instance_type = var.node_ec2_type
+
       k8s_labels = {
         Environment = "test"
         GithubRepo  = "terraform-aws-eks"
