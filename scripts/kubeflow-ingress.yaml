@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  creationTimestamp: "2020-10-12T14:59:13Z"
+  generation: 1
+  name: kubeflow-ingress
+  namespace: istio-system
+  resourceVersion: "129390"
+  selfLink: /apis/extensions/v1beta1/namespaces/istio-system/ingresses/kubeflow-ingress
+  uid: f3ac5771-068d-4803-ada2-dcbcb2c383d3
+spec:
+  rules:
+  - host: kubeflow.terraform.bciadopt.com
+    http:
+      paths:
+      - backend:
+          serviceName: istio-ingressgateway
+          servicePort: 80
+  tls:
+  - hosts:
+    - kubeflow.terraform.bciadopt.com
+    secretName: tls-secret
