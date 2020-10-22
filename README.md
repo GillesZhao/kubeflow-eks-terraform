@@ -18,7 +18,8 @@
     terraform init
     terraform apply
     
-    The values like VPC name, EKS Cluster name etc. will be automatically applied by file values.auto.tfvars.
+    The values like VPC name and IP scope, EKS Cluster name etc. are defined in **values.auto.tfvars**
+    Please edit in order to specify the values, and they will be automatically applied by terraform.
 ```
 
 ### Some information about the terraform stack:  
