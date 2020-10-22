@@ -2,6 +2,6 @@
 
 
 #Before to destroy this terraform stack, delete AWS NLB and ingress
-kubectl delete -f deploy-ingress-nginx.yaml
+helm uninstall ingress-nginx
 
 echo 0

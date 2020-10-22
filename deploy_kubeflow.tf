@@ -9,12 +9,12 @@ resource "null_resource" "deploy_kubeflow" {
   }
 
   provisioner "local-exec" {
-    command = "sh deploy_kubeflow.sh"
+    command = "sh scripts/deploy_kubeflow.sh"
   }
   
   provisioner "local-exec" {
     when    = destroy
-    command = "sh destroy_aws_nlb.sh"
+    command = "sh scriptes/destroy_aws_nlb.sh"
   }
 }
 

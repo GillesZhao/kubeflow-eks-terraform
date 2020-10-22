@@ -27,8 +27,8 @@ kfctl apply -V -f manifests/kfdef/kfctl_istio_dex.v1.0.2.yaml
 
 #once kubeflow deployed, create AWS NLB and ingress
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm install my-release ingress-nginx/ingress-nginx
+helm install ingress-nginx ingress-nginx/ingress-nginx
 sleep 350
-kubectl create -f kubeflow-ingress.yaml
+kubectl create -f scripts/kubeflow-ingress.yaml
 
 
