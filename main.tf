@@ -97,7 +97,7 @@ module "eks" {
   }
 
   node_groups = {
-    example = {
+    node-groups = {
       desired_capacity = var.node_desired_capacity
       max_capacity     = var.node_max_capacity
       min_capacity     = var.node_min_capacity
