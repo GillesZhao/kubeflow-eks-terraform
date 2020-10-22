@@ -10,6 +10,7 @@ wget https://github.com/kubeflow/kubeflow/releases/download/v1.0/kfctl_v1.0-0-g9
 tar zxf kfctl_v1.0-0-g94c35cf_linux.tar.gz
 chmod +x ./kfctl
 sudo mv ./kfctl /usr/local/bin/kfctl
+rm -f kfctl*.tar.gz
 
 #get eks nodes info
 /usr/local/bin/kubectl get nodes > get_eks_nodes_info.log 2>&1
