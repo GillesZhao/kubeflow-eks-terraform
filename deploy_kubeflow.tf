@@ -14,7 +14,7 @@ resource "null_resource" "deploy_kubeflow" {
   
   provisioner "local-exec" {
     when    = destroy
-    command = "sh scriptes/destroy_aws_nlb.sh"
+    command = "sh scripts/destroy_aws_nlb.sh"
   }
 }
 
