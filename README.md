@@ -145,3 +145,18 @@
     }
     
 ```
+
+## Resources destroy:
+```
+
+   terraform destroy
+   
+   The local script will delete AWS Load Balancer first of all:
+  
+   provisioner "local-exec" {
+     when    = destroy
+     command = "sh scripts/destroy_aws_nlb.sh"
+   }
+
+
+```
