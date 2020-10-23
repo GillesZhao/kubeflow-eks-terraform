@@ -18,8 +18,8 @@
     terraform init
     terraform apply
     
-    The values like VPC name and IP scope, EKS Cluster name etc. are defined in **values.auto.tfvars**
-    Please edit in order to specify the values, and they will be automatically applied by terraform.
+    The values like VPC name and IP scope, EKS Cluster name, node instance size etc. are defined in **values.auto.tfvars**
+    Please edit it to specify the values, and they will be automatically applied by terraform.
 ```
 
 ### Some information about the terraform stack:  
@@ -32,6 +32,7 @@
      EKS cluster
      EKS node groups with EC2 worker nodes
      Autoscaling groups for EC2 worker nodes
+     AWS Load Balancer integrated with ingress-nginx in EKS(Deployed by helm, please check detail in scripts/deploy_kubeflow.sh)
 ```
 
 ## After EKS cluster created by terraform, kubeflow building will be launched: 
@@ -48,7 +49,7 @@
       }
 
       provisioner "local-exec" {
-        command = "sh deploy_kubeflow.sh"
+        command = "sh scripts/deploy_kubeflow.sh"
       }
 
     }
@@ -58,8 +59,9 @@
 ```
     Install kubectl
     Install kfctl
+    Install helm
     Get and apply kubeflow deployment codes
-    Create Network Load Balancer(NLB) on AWS
+    Create Network Load Balancer(NLB) integrated with ingress-nginx on AWS
     Create ingress in istio namespace
 ```
 
