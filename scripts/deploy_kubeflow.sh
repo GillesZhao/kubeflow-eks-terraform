@@ -12,7 +12,7 @@ chmod +x ./kfctl
 sudo mv ./kfctl /usr/local/bin/kfctl
 rm -f kfctl*.tar.gz*
 
-#install helm and repo
+#install helm
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
 chmod 700 get_helm.sh
 ./get_helm.sh
@@ -21,11 +21,11 @@ rm -f ./get_helm.sh
 #get eks nodes info
 /usr/local/bin/kubectl get nodes > get_eks_nodes_info.log 2>&1
 
-#get kubeflow deployment codes
+#get kubeflow deployment codes and launch
 git clone https://github.com/kubeflow/manifests.git
 kfctl apply -V -f manifests/kfdef/kfctl_istio_dex.v1.0.2.yaml 
 
-#once kubeflow deployed, create AWS NLB and ingress
+#once kubeflow deployed, create AWS Classic LB and ingress in namespace istio-system
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm install ingress-nginx ingress-nginx/ingress-nginx
 sleep 350
