@@ -14,7 +14,7 @@ metadata:
   uid: f3ac5771-068d-4803-ada2-dcbcb2c383d3
 spec:
   rules:
-  - host: kubeflow.terraform.bciadopt.com
+  - host: kubeflow.terraform.example.com
     http:
       paths:
       - backend:
@@ -22,5 +22,5 @@ spec:
           servicePort: 80
   tls:
   - hosts:
-    - kubeflow.terraform.bciadopt.com
+    - kubeflow.terraform.example.com
     secretName: tls-secret
