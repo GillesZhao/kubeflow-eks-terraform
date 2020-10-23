@@ -18,7 +18,8 @@
     terraform init
     terraform apply
     
-    The values like VPC name and IP scope, EKS Cluster name, node instance size etc. are defined in **values.auto.tfvars**
+    Add AWS credential before launching.
+    The values like VPC name and IP scope, EKS Cluster name, node instance size etc. are defined in values.auto.tfvars
     Please edit it to specify the values, and they will be automatically applied by terraform.
 ```
 
